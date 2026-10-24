@@ -1,6 +1,248 @@
-   <!DOCTYPE html>
-   <html>
-     <body>
-       <h1>Hello, world!</h1>
-     </body>
-   </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name – Cloud & DevSecOps Architect</title>
+<meta name="description" content="Portfolio of a cloud and DevSecOps architect: Kubernetes, observability, and secure delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2f5;
+    --surface: #ffffff;
+    --ink: #14202e;
+    --muted: #5a6877;
+    --line: #cfd8e1;
+    --cobalt: #2f5bea;
+    --cobalt-soft: #dbe4fd;
+    --amber: #f2a93b;
+    --head: "Bricolage Grotesque", "Segoe UI", sans-serif;
+    --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #101922;
+      --surface: #182430;
+      --ink: #e8eef4;
+      --muted: #95a4b3;
+      --line: #2b3a49;
+      --cobalt: #7d9bff;
+      --cobalt-soft: #22335e;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Header */
+  header.top { padding: 1.25rem 0; }
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .brand { font: 700 1.15rem var(--head); text-decoration: none; }
+  nav a { margin-left: 1.5rem; text-decoration: none; color: var(--muted); font-weight: 500; }
+  nav a:hover { color: var(--cobalt); }
+
+  /* Hero */
+  .hero { padding: 3.5rem 0 4rem; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+  h1 {
+    font: 700 clamp(2.4rem, 5.5vw, 4rem)/1.05 var(--head);
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+  .lede { color: var(--muted); max-width: 34rem; margin: 0 0 2rem; }
+  .btn {
+    display: inline-block; padding: .8rem 1.4rem; border-radius: 10px;
+    background: var(--cobalt); color: #fff; font-weight: 600; text-decoration: none;
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); margin-left: .5rem; }
+
+  /* Pod grid: the interactive centrepiece */
+  .cluster { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.25rem; }
+  .cluster h2 { font: 600 .95rem var(--body); color: var(--muted); margin: 0 0 .9rem; }
+  .pods { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+  .pod {
+    aspect-ratio: 1; border-radius: 10px; border: 1.5px solid var(--line);
+    background: var(--paper); color: var(--ink);
+    font: 600 .78rem/1.2 var(--body); padding: .4rem; cursor: pointer;
+    display: grid; place-items: center; text-align: center;
+    transition: background .15s, border-color .15s, transform .15s;
+  }
+  .pod:hover { border-color: var(--cobalt); transform: translateY(-2px); }
+  .pod[aria-pressed="true"] { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+  .detail {
+    margin-top: 1rem; padding: .9rem 1rem; border-radius: 10px;
+    background: var(--cobalt-soft); min-height: 5.5rem; font-size: .98rem;
+  }
+  .detail strong { display: block; font-family: var(--head); font-size: 1.1rem; margin-bottom: .2rem; }
+
+  /* Sections */
+  section.block { padding: 4rem 0; border-top: 1px solid var(--line); }
+  h2.title { font: 700 clamp(1.6rem, 3vw, 2.2rem)/1.15 var(--head); margin: 0 0 2rem; letter-spacing: -0.01em; }
+  .projects { list-style: none; margin: 0; padding: 0; }
+  .projects li {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--line);
+  }
+  .projects li:first-child { padding-top: 0; }
+  .projects h3 { font: 600 1.25rem var(--head); margin: 0 0 .25rem; }
+  .projects p { margin: 0; color: var(--muted); max-width: 40rem; }
+  .projects a.repo { font-weight: 600; color: var(--cobalt); text-decoration: none; white-space: nowrap; }
+  .projects a.repo:hover { text-decoration: underline; }
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .about p { margin: 0 0 1rem; max-width: 34rem; }
+  .facts { list-style: none; margin: 0; padding: 0; }
+  .facts li { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+  .facts span:first-child { color: var(--muted); }
+
+  footer { padding: 3rem 0 4rem; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+  footer a.mail { font: 700 clamp(1.3rem, 3vw, 1.9rem) var(--head); text-decoration: none; color: var(--cobalt); }
+  .links a { margin-right: 1.25rem; color: var(--muted); }
+
+  @media (max-width: 800px) {
+    .hero .wrap, .about { grid-template-columns: 1fr; gap: 2rem; }
+    nav a { margin-left: 1rem; }
+    .projects li { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Your Name</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>I build secure, observable platforms on Kubernetes.</h1>
+        <p class="lede">Cloud and DevSecOps architect. I design the infrastructure, pipelines, and monitoring that let teams ship quickly without losing sight of what is running in production.</p>
+        <a class="btn" href="#work">See my work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+
+      <div class="cluster">
+        <h2>Select a pod to see what I do there</h2>
+        <div class="pods" id="pods" role="group" aria-label="Skill areas"></div>
+        <div class="detail" id="detail" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2 class="title">Selected work</h2>
+      <ul class="projects">
+        <li>
+          <div>
+            <h3>Project name one</h3>
+            <p>Describe what you built, the problem it solved, and one result you can point to.</p>
+          </div>
+          <a class="repo" href="https://github.com/your-username/project-one">View on GitHub</a>
+        </li>
+        <li>
+          <div>
+            <h3>Project name two</h3>
+            <p>A second project. Mention the tools used, such as Helm, Terraform, or Prometheus.</p>
+          </div>
+          <a class="repo" href="https://github.com/your-username/project-two">View on GitHub</a>
+        </li>
+        <li>
+          <div>
+            <h3>Project name three</h3>
+            <p>A third project, ideally in a different area from the first two.</p>
+          </div>
+          <a class="repo" href="https://github.com/your-username/project-three">View on GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div>
+        <h2 class="title">About</h2>
+        <p>Write two or three sentences about how you work and what you care about. Keep it specific: the kinds of systems you run, the teams you work with, and what you enjoy solving.</p>
+        <p>Add a line about what you are exploring right now.</p>
+      </div>
+      <ul class="facts">
+        <li><span>Role</span><span>Cloud &amp; DevSecOps Architect</span></li>
+        <li><span>Focus</span><span>Kubernetes, observability</span></li>
+        <li><span>Also exploring</span><span>AI developer tooling</span></li>
+        <li><span>Based in</span><span>Your city</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <a class="mail" href="mailto:you@example.com">you@example.com</a>
+    <div class="links">
+      <a href="https://github.com/your-username">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Edit this list to change the pods and their descriptions.
+  const skills = [
+    { name: "Kubernetes", text: "Cluster design, upgrades, multi-tenancy, and day-two operations." },
+    { name: "Observability", text: "Metrics, logs, and traces with dashboards and alerts people actually trust." },
+    { name: "Security", text: "Policy as code, image scanning, secrets handling, and least-privilege access." },
+    { name: "CI/CD", text: "Pipelines that build, test, scan, and deploy with clear rollback paths." },
+    { name: "IaC", text: "Terraform and GitOps workflows so every environment can be rebuilt from code." },
+    { name: "Cloud", text: "Architecture across AWS, Azure, and GCP with cost and resilience in mind." },
+    { name: "Networking", text: "Service meshes, ingress, DNS, and zero-trust network patterns." },
+    { name: "AI tooling", text: "Putting AI assistants and agents to work in developer workflows." }
+  ];
+
+  const podsEl = document.getElementById("pods");
+  const detailEl = document.getElementById("detail");
+
+  function select(i) {
+    [...podsEl.children].forEach((p, idx) => p.setAttribute("aria-pressed", idx === i));
+    detailEl.innerHTML = "";
+    const title = document.createElement("strong");
+    title.textContent = skills[i].name;
+    detailEl.append(title, skills[i].text);
+  }
+
+  skills.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "pod";
+    b.textContent = s.name;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => select(i));
+    podsEl.appendChild(b);
+  });
+  select(0);
+</script>
+</body>
+</html>
